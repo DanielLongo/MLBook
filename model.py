@@ -7,7 +7,7 @@ from keras.layers import Embedding, LSTM, Dense
 import numpy as np
 import tensorflow as tf
 
-from data import load_document
+from data import load_document, load_object
 
 tf.debugging.set_log_device_placement(True)
 
@@ -42,6 +42,7 @@ def main():
     model.fit(X, y, batch_size=128, epochs=300)
     # save the model to file
     model.save('model.h5')
+
     # dump(tokenizer, open('tokenizer.pkl', 'wb'))
 
 def predict():

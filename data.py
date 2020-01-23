@@ -1,7 +1,16 @@
 import re
 import numpy as np
 from keras.preprocessing.text import Tokenizer
+import _pickle as cPickle
 
+def save_object(object, filename):
+    with open(filename + ".pkl", "wb") as fid:
+        cPickle.dump(object, fid)
+
+def load_object(filename):
+    with open(filename + ".pkl", "rb") as fid:
+        object = cPickle.load(fid)
+        return object
 
 def create_text_chunks(text, chunk_length):
     # creates text chunks also with next word
@@ -25,6 +34,7 @@ def create_text_chunks(text, chunk_length):
 def get_tokenizer(text):
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(text)
+    save_object(tokenizer, "tokenizer")
     return tokenizer
 
 
